@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script type='text/javascript' src='./assets/jquery/jquery1.12.4.js'></script>
+        <script type='text/javascript' src="./assets/layui/layui.js"></script>
+        <script type="text/javascript" src="./js/file_manager.js"></script>
+        <link type="text/css" rel='styleSheet' href='./assets/layui/css/layui.css'>
+        <link type="text/css" rel='styleSheet' href='./css/file_manager.css'>
+    </head>
+    <body>
+        <div id='test_div'>
+            <div id='files_body'>
+
+            </div>
+        </div>
+    </body>
+    <script type='text/javascript'>
+            // console.log('hello world');
+            window.layui = layui;
+            $('#files_body').fileManager({'setting': true});
+    </script>
+</html>

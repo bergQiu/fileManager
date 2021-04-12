@@ -1,0 +1,14 @@
+#test_div{
+    height: 500px;
+    width: 500px;
+    background-color: grey;
+    padding-top: 20px;
+}
+
+#files_body{
+    height: 30px;
+    width: 80%;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid white;
+}
