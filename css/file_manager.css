@@ -3,6 +3,7 @@
     width: 500px;
     background-color: grey;
     padding-top: 20px;
+    color: #999
 }
 
 #files_body{
@@ -11,4 +12,16 @@
     text-align: center;
     border-radius: 10px;
     border: 1px solid white;
+}
+
+.target-div{
+    height: 500px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #e2e2e2;
+    background-color: #f4f7ef;
+}
+
+.target-header{
+    font-size: 13px;
 }

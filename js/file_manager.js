@@ -33,15 +33,14 @@
         openManagerLayer: function(){
             // console.log('hello ');
             // console.log('打开弹窗');
-            console.log(2);
-            console.log(this);
             this.$target && this.$target.slideToggle()
         },
         createElement: function(){
             console.log(3);
             console.log(this);
-            let html = `<div id='${this.uid}-target-div'>
-                            wonderland
+            let html = `<div id='${this.uid}-target-div' class='layui-container target-div'>
+                            <div class='layui-row target-header'><i class='fa fa-folder-open'></i>　路径选择工具</div>
+                            
             </div>`
 
             this.$target = $(html);
