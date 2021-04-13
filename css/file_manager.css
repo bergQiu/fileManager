@@ -1,27 +1,109 @@
-#test_div{
-    height: 500px;
-    width: 500px;
-    background-color: grey;
-    padding-top: 20px;
-    color: #999
+#test_div {
+  height: 700px;
+  width: 700px;
+  background-color: grey;
+  padding-top: 20px;
+  color: #999;
+  margin-left: 100px;
 }
-
-#files_body{
-    height: 30px;
-    width: 80%;
-    text-align: center;
-    border-radius: 10px;
-    border: 1px solid white;
+#files_body {
+  height: 30px;
+  width: 80%;
+  text-align: center;
+  border-radius: 10px;
+  border: 1px solid white;
 }
-
-.target-div{
-    height: 500px;
-    width: 100%;
-    border-radius: 5px;
-    border: 1px solid #e2e2e2;
-    background-color: #f4f7ef;
+.target-tools button,
+.target-tools i {
+  color: #999;
 }
-
-.target-header{
-    font-size: 13px;
+.target-div {
+  height: 500px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #e2e2e2;
+  background-color: #f4f7ef;
+  padding: 5px;
+  font-size: 12px;
+}
+.target-div span {
+  font-size: 12px;
+}
+.target-div .layui-btn {
+  background-color: #f4f7ef;
+}
+.target-header {
+  font-size: 13px;
+}
+.target-body {
+  height: calc(100% - 180px);
+}
+.target-footer {
+  height: 95px;
+}
+.target-footer .checked-title {
+  height: 98%;
+  border-right: 1px solid #e6e6e6;
+}
+.target-footer .checked-path {
+  padding-left: 10px;
+}
+.target-footer .checked-item-del {
+  cursor: pointer;
+}
+.my-hr {
+  margin: 3px 0px;
+}
+.folder-show {
+  height: 100%;
+}
+.folder-info {
+  height: 100%;
+  border-left: 1px solid #e6e6e6;
+}
+.close,
+.fast-tools {
+  text-align: right;
+}
+.path-child:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.folder-icon-item:hover {
+  cursor: pointer;
+  border: 1px solid #999;
+  margin: 9px;
+  border-radius: 4px;
+}
+.folder-icon-item {
+  float: left;
+  margin: 10px;
+  text-align: center;
+  /* max-width: 80px; */
+  width: 90px;
+  height: 90px;
+}
+.folder-icon-item span {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.folder-icon-item .check {
+  text-align: left;
+  height: 13px;
+  margin: 5px 0 0 5px;
+}
+.nothing {
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }

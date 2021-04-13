@@ -19,6 +19,42 @@
     <script type='text/javascript'>
             // console.log('hello world');
             window.layui = layui;
-            $('#files_body').fileManager({'setting': true});
+            let demoData = {
+                '/': [
+                    {'path': '/assets'},
+                    {'path': '/js'},
+                    {'path': '/css'},
+                ],
+                '/assets': [
+                    {'path': '/assets/jquery'},
+                    {'path': '/assets/layui'},
+                    {'path': '/assets/fontawesome'},
+                ],
+                '/assets/layui': [
+                    {'path': '/assets/layui/js'},
+                    {'path': '/assets/layui/css'},
+                    {'path': '/assets/layui/font'},
+                ],
+                '/assets/fontawesome': [
+                    {'path': '/assets/fontawesome/jsx'},
+                    {'path': '/assets/fontawesome/less'},
+                    {'path': '/assets/fontawesome/fonts'},
+                ],
+                '/assets/fontawesome/jsx': [],
+                '/assets/fontawesome/less': [],
+                '/assets/fontawesome/fonts': [],
+                '/js': [
+                    {'path': '/js/utils'},
+                    {'path': '/js/user'},
+                    {'path': '/js/public'},
+                ],
+                '/css': [
+                    {'path': '/css/less'},
+                    {'path': '/css/css'}
+                ],
+            }
+            $('#files_body').fileManager({ 
+                                            folders: demoData
+                                        });
     </script>
 </html>

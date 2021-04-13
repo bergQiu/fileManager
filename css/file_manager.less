@@ -1,0 +1,131 @@
+@fontColor: #999;
+@backgroundColor: #f4f7ef;
+
+#test_div{
+    height: 700px;
+    width: 700px;
+    background-color: grey;
+    padding-top: 20px;
+    color: @fontColor;
+    margin-left: 100px;
+}
+
+#files_body{
+    height: 30px;
+    width: 80%;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid white;
+}
+
+.target-tools{
+    button, i{
+        color: @fontColor;
+    }
+}
+
+.target-div{
+    height: 500px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #e2e2e2;
+    background-color: @backgroundColor;
+    padding: 5px;
+    font-size: 12px;
+
+    span{
+        font-size: 12px;
+    }
+
+    .layui-btn {
+        background-color: @backgroundColor;
+    }
+}
+
+.target-header{
+    font-size: 13px;
+}
+
+.target-body{
+    height: calc(100% - 180px);
+}
+
+.target-footer{
+    height: 95px;
+
+    .checked-title{
+        height: 98%;
+        border-right: 1px solid #e6e6e6;
+    }
+    .checked-path{
+        padding-left: 10px;
+    }
+    .checked-item-del{
+        cursor: pointer;
+    }
+}
+
+.my-hr{
+    margin: 3px 0px;
+}
+
+.folder-show{
+    height: 100%;
+}
+
+.folder-info{
+    height: 100%;
+    border-left: 1px solid #e6e6e6;
+}
+
+.close, .fast-tools{
+    text-align: right;
+}
+
+.path-child:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.folder-icon-item:hover{
+    cursor: pointer;
+    border: 1px solid @fontColor;
+    margin: 9px;
+    border-radius: 4px;
+}
+
+.folder-icon-item{
+    float: left;
+    margin: 10px;
+    text-align: center;
+    /* max-width: 80px; */
+    width: 90px;
+    height: 90px;
+
+    span{
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        overflow:hidden; 
+        text-overflow:ellipsis;
+        display:-webkit-box; 
+        -webkit-box-orient:vertical;
+        -webkit-line-clamp:2; 
+        // display: inline-block;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+    .check{
+        text-align: left;
+        height: 13px;
+        margin: 5px 0 0 5px;
+    }
+}
+
+.nothing{
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
