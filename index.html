@@ -72,6 +72,10 @@
             $('#files_body').fileManager({ 
                                             folders: demoData,
                                             defaultFolder: '/',
+                                            homePath: '/images',
+                                            defaultFolder: '/images',
+                                            getDirsUrl: 'images/get_dir/?prefix=',
+                                            callBack: function(checked){}
                                         });
     </script>
 </html>

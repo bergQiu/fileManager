@@ -65,7 +65,7 @@
             })
 
             _this.$target.find('.home-path').click(function(){
-                _this.presentFolder = '/';
+                _this.presentFolder = _this.options.homePath || '/';
                 _this.render();
             })
 
