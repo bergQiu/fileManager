@@ -79,6 +79,12 @@
                 _this.$target.slideToggle();
             })
 
+            _this.$target.find('.clear-all-checked').click(function(){
+                _this.checkedFolders = [];
+                _this.render();
+                _this.renderCheckedFolders();
+            })
+
             $(document).on('click', `#${_this.uid}-target-div .path-child`, function(){
                 let path = $(this).data('path');
                 _this.presentFolder = path
@@ -128,8 +134,9 @@
                                 <div class='layui-row target-tools'>
                                     <div class='layui-col-md8 normal-tools'>
                                         <button class='home-path layui-btn layui-btn-primary layui-btn-xs'><i class='fa fa-home'></i> 首页</button>
-                                        <button class='last-path layui-btn layui-btn-primary layui-btn-xs'><i class='fa fa-arrow-circle-left'></i> 上一层</button>
-                                        <button class='refresh-path layui-btn layui-btn-primary layui-btn-xs'><i class='fa fa-refresh'></i> 刷新当前</button>
+                                        <button class='last-path layui-btn layui-btn-primary layui-btn-xs'><i class='fa fa-arrow-circle-left'></i> 上层</button>
+                                        <button class='clear-all-checked layui-btn layui-btn-primary layui-btn-xs'><i class='fa fa-trash-o'></i> 清空</button>
+                                        <button class='refresh-path layui-btn layui-btn-primary layui-btn-xs'><i class='fa fa-refresh'></i> 刷新</button>
                                     </div>
                                     <div class='layui-col-md4 fast-tools'>
                                         <button class='layui-btn layui-btn-primary layui-btn-xs show-type-change'><i class='fa ${this.showType  == 'icon' ? 'fa-th': 'fa-list'}'></i></button>
@@ -250,20 +257,52 @@
             let checkedFolders = this.checkedFolders;
 
             checkboxes.each((i, c) => {
-                let path =$(c).data('path');
+                let p =$(c).data('path');
                 let flag = '';
                 let r = checkedFolders.some((f, j) => {
-                    if(path.indexOf(f) == 0){
-                        // 是选中的路径子集
+                    if(f == p){
                         flag = 'whole_check'
                         $(c).prop('checked', true);
                         return true
-                    }else if(f.indexOf(path) == 0){
-                        flag = 'half_check';
-                        $(c).prop('checked', false);
-                        $(c).prop('indeterminate', true);
-                        return true
+                    }else{
+                        let p_l = p.split('/').filter(p_ => p_);
+                        let f_l = f.split('/').filter(f_ => f_);
+                        let t = false;
+
+                        if(p_l < f_l){
+                            t = p_l.every((m,n) => m == f_l[n]);
+                            console.log('**');
+                            console.log(t);
+                            if(t){
+                                flag = 'half_check'
+                                $(c).prop('checked', false);
+                                $(c).prop('indeterminate', true);
+                                return true
+                            }
+                        }else if(f_l <= p_l){
+                            console.log(f_l);
+                            console.log(p_l);
+                            t = f_l.every((m,n) => m == p_l[n]);
+                            console.log('--');
+                            console.log(t);
+                            if(t){
+                                flag = 'whole_check'
+                                $(c).prop('checked', true);
+                                return true
+                            }
+                        }
                     }
+                    // if(path.indexOf(f) == 0){
+                    //     // 是选中的路径子集
+                    //     flag = 'whole_check'
+                    //     $(c).prop('checked', true);
+                    //     return true
+                    // }else if(f.indexOf(path) == 0){
+                    //     flag = 'half_check';
+                    //     $(c).prop('checked', false);
+                    //     $(c).prop('indeterminate', true);
+                    //     return true
+                    // }
                 })
                 // if(this.checkedFolders.includes(path)){
                 //     // $(c).prop('checked', true);
@@ -317,7 +356,6 @@
                 return false
             }
         }
-
     }
 
     return new a(el, options);
