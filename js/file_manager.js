@@ -3,10 +3,6 @@
     let layer;
     let plugs = ['layer'];
 
-    layui.use(plugs, function(){
-        layer = layui.layer;
-    })
-
     $.fn.fileManager = function(options){
         let fm = factory(this, options);
         fm.init();
@@ -16,16 +12,18 @@
         this.$el = el;
         let default_ = {
             folders: {},
+            homePath: '/',
             defaultFolder: '/assets',
             checkedFolders: [], 
-            showType: 'list' // 'icon', 'list'
+            showType: 'list', // 'icon', 'list',
+            getDirsUrl: '#',
+            callBack: undefined
         };
         this.options = $.extend(true, default_, options)
     }
     
     a.prototype = {
         init: function(){
-            // console.log('i am a++');
             let mydate = new Date();
             this.uid = 'uid' + mydate.getDay()+ mydate.getHours()+ mydate.getMinutes()+mydate.getSeconds()+mydate.getMilliseconds()+ Math.round(Math.random() * 10000);
             this.showType = this.options.showType;
@@ -35,10 +33,6 @@
             this.checkedFolders = this.options.checkedFolders;
             this.bindEvent();
             this.createElement();
-            this.openManagerLayer();
-            console.log('*************');
-            console.log(this);
-            console.log('*************');
             this.render();
             this.bindPlugEvent();
         },
@@ -85,6 +79,10 @@
                 _this.renderCheckedFolders();
             })
 
+            _this.$target.find('.refresh-path').click(function(){
+                _this.getDirs(_this.presentFolder)
+            })
+
             $(document).on('click', `#${_this.uid}-target-div .path-child`, function(){
                 let path = $(this).data('path');
                 _this.presentFolder = path
@@ -93,13 +91,8 @@
 
             $(document).on('dblclick', `#${_this.uid}-target-div .folder-item`, function(e){
                 let path = $(this).data('path');
-                
-                if(_this.folders[path]){
-                    _this.presentFolder = path
-                    _this.render();
-                }else{
-
-                }
+                _this.presentFolder = path
+                _this.render();
             })
 
             $(document).on('change' ,`#${_this.uid}-target-div input[name=checked-folder]`, function(){
@@ -181,13 +174,29 @@
 
             this.$target.find('.now-path').html(now_path);
             // return now_path
-        }
-        ,
+        },
+        getDirs: function(path){
+            let _this = this;
+
+            $.ajax({
+                url: `${window.location.origin}/${this.options.getDirsUrl}${path}`,
+                method: 'GET'
+            }).done(res => {
+                if(!res.code){
+                    _this.folders[res.data.path] = res.data.dirs;
+                    _this.render();
+                }
+            }).fail(()=>{})
+        },
         renderTargetBody: function(){
             let show = this.folders[this.presentFolder];
+            if(show == undefined){
+                this.getDirs(this.presentFolder)
+                return false
+            }
             let type = this.showType;
             let body = '';
-            console.log(show.length);
+
             if(show.length){
                 show.map(folder => {
                     body += (type == 'icon'? this.foldersIconEx(folder): this.foldersListEx(folder)) 
@@ -197,7 +206,6 @@
             }
 
             this.$target.find('.target-body').html(`<div>${body}</div>`);
-            // return `<div>${body}</div>`
         },
         foldersIconEx: function(folder){
             return `<div class='folder-item folder-icon-item' data-path='${folder.path}'>
@@ -250,7 +258,8 @@
                 })
             }
 
-            $(`#${this.uid}-target-div .target-footer .checked-path`).html(body)
+            $(`#${this.uid}-target-div .target-footer .checked-path`).html(body);
+            this.options.callBack && this.options.callBack(this.checkedFolders);
         },
         renderCheckbox: function(){
             let checkboxes = $(`#${this.uid}-target-div .target-body input[name=checked-folder]`);
@@ -271,8 +280,6 @@
 
                         if(p_l < f_l){
                             t = p_l.every((m,n) => m == f_l[n]);
-                            console.log('**');
-                            console.log(t);
                             if(t){
                                 flag = 'half_check'
                                 $(c).prop('checked', false);
@@ -280,11 +287,7 @@
                                 return true
                             }
                         }else if(f_l <= p_l){
-                            console.log(f_l);
-                            console.log(p_l);
                             t = f_l.every((m,n) => m == p_l[n]);
-                            console.log('--');
-                            console.log(t);
                             if(t){
                                 flag = 'whole_check'
                                 $(c).prop('checked', true);
@@ -292,22 +295,7 @@
                             }
                         }
                     }
-                    // if(path.indexOf(f) == 0){
-                    //     // 是选中的路径子集
-                    //     flag = 'whole_check'
-                    //     $(c).prop('checked', true);
-                    //     return true
-                    // }else if(f.indexOf(path) == 0){
-                    //     flag = 'half_check';
-                    //     $(c).prop('checked', false);
-                    //     $(c).prop('indeterminate', true);
-                    //     return true
-                    // }
                 })
-                // if(this.checkedFolders.includes(path)){
-                //     // $(c).prop('checked', true);
-                    
-                // }
             })
         },
         checkWholeCheck: function(path){

@@ -32,6 +32,11 @@
     background-color: @backgroundColor;
     padding: 5px;
     font-size: 12px;
+    position: absolute;
+    display: block;
+    z-index: 999;
+    color: @fontColor;
+    box-shadow:5px 5px 20px #000;
 
     span{
         font-size: 12px;
@@ -61,6 +66,7 @@
         cursor: pointer;
         border: 1px solid #e6e6e6;
         margin: 9px;
+        box-sizing: border-box; //不占外部空间
         border-radius: 4px;
     }
 
