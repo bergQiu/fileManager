@@ -48,6 +48,77 @@
 
 .target-body{
     height: calc(100% - 180px);
+    overflow: auto;
+
+    .nothing{
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+    .folder-icon-item:hover{
+        cursor: pointer;
+        border: 1px solid #e6e6e6;
+        margin: 9px;
+        border-radius: 4px;
+    }
+
+    .folder-icon-item{
+        float: left;
+        margin: 10px;
+        text-align: center;
+        /* max-width: 80px; */
+        width: 90px;
+        height: 90px;
+
+        span{
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow:hidden; 
+            text-overflow:ellipsis;
+            display:-webkit-box; 
+            -webkit-box-orient:vertical;
+            -webkit-line-clamp:2; 
+            // display: inline-block;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        .check{
+            text-align: left;
+            height: 13px;
+            margin: 5px 0 0 5px;
+        }
+    }
+
+    .folder-list-item:hover{
+        cursor: pointer;
+        border-bottom: 1px solid #e6e6e6;
+        // margin-bottom: 1px;
+        box-sizing: border-box //不占外部空间
+    }
+
+    .folder-list-item{
+        height: 20px;
+        margin: 0px 0px 5px 10px;
+
+        div{
+            display: inline;
+        }
+
+        span{
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        input{
+            vertical-align:-3px
+        }
+    }
 }
 
 .target-footer{
@@ -59,9 +130,27 @@
     }
     .checked-path{
         padding-left: 10px;
+        direction: rtl;
+        overflow: auto;
+        height: 95%;
     }
     .checked-item-del{
         cursor: pointer;
+    }
+
+    .folder-checked-item{
+        direction: ltr;
+        padding: 0px 5px;
+        border-radius: 3px;
+    }
+
+    .folder-checked-item:hover{
+        background-color: #c7c6c547;
+    }
+
+    .checked-item-del{
+        text-align: right;
+        margin-right: 10px;
     }
 }
 
@@ -87,45 +176,36 @@
     text-decoration: underline;
 }
 
-.folder-icon-item:hover{
-    cursor: pointer;
-    border: 1px solid @fontColor;
-    margin: 9px;
-    border-radius: 4px;
+.my-scrollbar::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width : 5px;  /*高宽分别对应横竖滚动条的尺寸*/
+    height: 1px;
+}
+.my-scrollbar::-webkit-scrollbar-thumb {
+    // /*滚动条里面小方块*/
+    // border-radius: 10px;
+    // box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    // background: #535353;
+
+    /*滚动条里面小方块*/
+    border-radius   : 10px;
+    background-color: skyblue;
+    background-image: -webkit-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.2) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.2) 75%,
+        transparent 75%,
+        transparent
+    );
+}
+.my-scrollbar::-webkit-scrollbar-track {
+    /*滚动条里面轨道*/
+    box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background   : #ededed;
 }
 
-.folder-icon-item{
-    float: left;
-    margin: 10px;
-    text-align: center;
-    /* max-width: 80px; */
-    width: 90px;
-    height: 90px;
 
-    span{
-        white-space: pre-wrap;
-        word-wrap: break-word;
-        overflow:hidden; 
-        text-overflow:ellipsis;
-        display:-webkit-box; 
-        -webkit-box-orient:vertical;
-        -webkit-line-clamp:2; 
-        // display: inline-block;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        -webkit-user-select: none;
-        user-select: none;
-    }
-    .check{
-        text-align: left;
-        height: 13px;
-        margin: 5px 0 0 5px;
-    }
-}
-
-.nothing{
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
-}

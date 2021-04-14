@@ -37,6 +37,66 @@
 }
 .target-body {
   height: calc(100% - 180px);
+  overflow: auto;
+}
+.target-body .nothing {
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.target-body .folder-icon-item:hover {
+  cursor: pointer;
+  border: 1px solid #e6e6e6;
+  margin: 9px;
+  border-radius: 4px;
+}
+.target-body .folder-icon-item {
+  float: left;
+  margin: 10px;
+  text-align: center;
+  /* max-width: 80px; */
+  width: 90px;
+  height: 90px;
+}
+.target-body .folder-icon-item span {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.target-body .folder-icon-item .check {
+  text-align: left;
+  height: 13px;
+  margin: 5px 0 0 5px;
+}
+.target-body .folder-list-item:hover {
+  cursor: pointer;
+  border-bottom: 1px solid #e6e6e6;
+  box-sizing: border-box;
+}
+.target-body .folder-list-item {
+  height: 20px;
+  margin: 0px 0px 5px 10px;
+}
+.target-body .folder-list-item div {
+  display: inline;
+}
+.target-body .folder-list-item span {
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.target-body .folder-list-item input {
+  vertical-align: -3px;
 }
 .target-footer {
   height: 95px;
@@ -47,9 +107,24 @@
 }
 .target-footer .checked-path {
   padding-left: 10px;
+  direction: rtl;
+  overflow: auto;
+  height: 95%;
 }
 .target-footer .checked-item-del {
   cursor: pointer;
+}
+.target-footer .folder-checked-item {
+  direction: ltr;
+  padding: 0px 5px;
+  border-radius: 3px;
+}
+.target-footer .folder-checked-item:hover {
+  background-color: #c7c6c547;
+}
+.target-footer .checked-item-del {
+  text-align: right;
+  margin-right: 10px;
 }
 .my-hr {
   margin: 3px 0px;
@@ -69,41 +144,21 @@
   cursor: pointer;
   text-decoration: underline;
 }
-.folder-icon-item:hover {
-  cursor: pointer;
-  border: 1px solid #999;
-  margin: 9px;
-  border-radius: 4px;
+.my-scrollbar::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: 5px;
+  /*高宽分别对应横竖滚动条的尺寸*/
+  height: 1px;
 }
-.folder-icon-item {
-  float: left;
-  margin: 10px;
-  text-align: center;
-  /* max-width: 80px; */
-  width: 90px;
-  height: 90px;
+.my-scrollbar::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 10px;
+  background-color: skyblue;
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
 }
-.folder-icon-item span {
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-}
-.folder-icon-item .check {
-  text-align: left;
-  height: 13px;
-  margin: 5px 0 0 5px;
-}
-.nothing {
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
+.my-scrollbar::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  background: #ededed;
 }
