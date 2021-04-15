@@ -31,6 +31,8 @@
             this.defaultFolder = this.options.defaultFolder;
             this.presentFolder = this.options.defaultFolder;
             this.checkedFolders = this.options.checkedFolders;
+            // console.log('>>>>>>>>>>');
+            // console.log(this);
             this.bindEvent();
             this.createElement();
             this.render();
@@ -43,6 +45,10 @@
         bindPlugEvent: function(){
             let _this = this;
 
+            _this.$target.click(function(evt){
+                evt.stopPropagation();
+                evt.preventDefault();
+            })
             _this.$target.find('.show-type-change').click(function(){
                 let type = $(this).find('i').hasClass('fa-th') ? 'icon': 'list';
 
