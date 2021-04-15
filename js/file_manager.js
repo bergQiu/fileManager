@@ -35,6 +35,7 @@
             this.createElement();
             this.render();
             this.bindPlugEvent();
+            this.renderCheckedFolders();
         },
         bindEvent: function(){
             this.$el.click(()=>{this.openManagerLayer()})
@@ -205,6 +206,8 @@
                 body = `<div class='nothing'>...</div>`
             }
 
+            let h = $('.now-path').closest('div').height();
+            h && this.$target.find('.target-body').css({'height': `calc(100% - ${161 + h}px)`});
             this.$target.find('.target-body').html(`<div>${body}</div>`);
         },
         foldersIconEx: function(folder){
