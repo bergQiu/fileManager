@@ -47,7 +47,7 @@
 
             _this.$target.click(function(evt){
                 evt.stopPropagation();
-                evt.preventDefault();
+                // evt.preventDefault();
             })
             _this.$target.find('.show-type-change').click(function(){
                 let type = $(this).find('i').hasClass('fa-th') ? 'icon': 'list';
@@ -190,7 +190,7 @@
                 method: 'GET'
             }).done(res => {
                 if(!res.code){
-                    _this.folders[res.data.path] = res.data.dirs;
+                    _this.folders[res.data.path] = res.data.dirs.map(d => {return d['path'][0] != '/' && (d['path'] = '/' + d['path']), d});
                     _this.render();
                 }
             }).fail(()=>{})
