@@ -45,10 +45,6 @@
         bindPlugEvent: function(){
             let _this = this;
 
-            _this.$target.click(function(evt){
-                evt.stopPropagation();
-                // evt.preventDefault();
-            })
             _this.$target.find('.show-type-change').click(function(){
                 let type = $(this).find('i').hasClass('fa-th') ? 'icon': 'list';
 
@@ -61,6 +57,7 @@
                 }
                 _this.showType = type;
                 _this.renderTargetBody();
+                return false
             })
 
             _this.$target.find('.last-path').click(function(){
@@ -69,43 +66,52 @@
                 let last_path = new_path ? new_path: '/';
                 _this.presentFolder = last_path;
                 _this.render();
+                return false
             })
 
             _this.$target.find('.home-path').click(function(){
                 _this.presentFolder = _this.options.homePath || '/';
                 _this.render();
+                return false
             })
 
             _this.$target.find('.close').click(function(){
                 _this.$target.slideToggle();
+                return false
             })
 
             _this.$target.find('.clear-all-checked').click(function(){
                 _this.checkedFolders = [];
                 _this.render();
                 _this.renderCheckedFolders();
+                return false
             })
 
             _this.$target.find('.refresh-path').click(function(){
-                _this.getDirs(_this.presentFolder)
+                _this.getDirs(_this.presentFolder);
+                return false
             })
 
             $(document).on('click', `#${_this.uid}-target-div .path-child`, function(){
                 let path = $(this).data('path');
                 _this.presentFolder = path
                 _this.render();
+                return false
             })
 
             $(document).on('dblclick', `#${_this.uid}-target-div .folder-item`, function(e){
                 let path = $(this).data('path');
                 _this.presentFolder = path
                 _this.render();
+                return false
             })
 
             $(document).on('change' ,`#${_this.uid}-target-div input[name=checked-folder]`, function(){
+                console.log(69);
                 let path = $(this).data('path');
                 let action = $(this).is(':checked');
                 _this.checkedPathChange(path, action);
+                return false
             })
 
             $(document).on('dblclick', `#${_this.uid}-target-div input[name=checked-folder]`, function(evt){
@@ -119,6 +125,7 @@
                 _this.checkedFolders = new_;
                 _this.render();
                 _this.renderCheckedFolders();
+                return false
             })
         },
         openManagerLayer: function(){
